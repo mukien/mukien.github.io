@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>高清MIDI图片镜像翻转视频生成器</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-hd"></i> 高清MIDI图片镜像翻转视频生成器</h1>
+            <p class="subtitle">生成1080P/4K高清视频，每个音符触发一次镜像翻转</p>
+        </header>
+        
+        <main class="card">
+            <div class="card-title">
+                <i class="fas fa-file-upload"></i>
+                <span>上传文件</span>
+            </div>
+            
+            <div class="upload-area" id="midi-upload">
+                <div class="upload-icon">
+                    <i class="fas fa-file-audio"></i>
+                </div>
+                <div class="upload-text">点击或拖放MIDI文件</div>
+                <div class="upload-subtext">支持标准MIDI格式 (.mid, .midi)</div>
+                <input type="file" id="midi-file" accept=".mid,.midi" class="upload-input">
+            </div>
+            
+            <div class="file-info hidden" id="midi-info">
+                <div>
+                    <div class="file-name" id="midi-name">未选择文件</div>
+                    <div class="file-size" id="midi-size"></div>
+                </div>
+                <button class="remove-btn" id="remove-midi">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="upload-area" id="image-upload">
+                <div class="upload-icon">
+                    <i class="fas fa-file-image"></i>
+                </div>
+                <div class="upload-text">点击或拖放高清图片</div>
+                <div class="upload-subtext">支持PNG、JPEG、WebP等格式，推荐使用高分辨率图片</div>
+                <input type="file" id="image-file" accept="image/*" class="upload-input">
+            </div>
+            
+            <div class="file-info hidden" id="image-info">
+                <div>
+                    <div class="file-name" id="image-name">未选择文件</div>
+                    <div class="file-size" id="image-size"></div>
+                </div>
+                <button class="remove-btn" id="remove-image">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="settings-panel">
+                <div class="card-title">
+                    <i class="fas fa-sliders-h"></i>
+                    <span>视频设置</span>
+                </div>
+                
+                <div class="settings-grid">
+                    <div class="setting-group">
+                        <label for="track-select"><i class="fas fa-music"></i> 选择音轨</label>
+                        <select id="track-select" disabled>
+                            <option value="">请先上传MIDI文件</option>
+                        </select>
+                    </div>
+                    
+                    <div class="setting-group">
+                        <label for="resolution"><i class="fas fa-expand"></i> 视频分辨率</label>
+                        <select id="resolution">
+                            <option value="720p">720P (1280×720)</option>
+                            <option value="1080p" selected>1080P (1920×1080) - 推荐</option>
+                            <option value="2k">2K (2560×1440)</option>
+                            <option value="4k">4K (3840×2160) - 高质量</option>
+                        </select>
+                    </div>
+                    
+                    <div class="setting-group">
+                        <label for="fps"><i class="fas fa-film"></i> 视频帧率 (FPS)</label>
+                        <input type="number" id="fps" min="24" max="60" value="30">
+                    </div>
+                    
+                    <div class="setting-group">
+                        <label for="duration"><i class="fas fa-clock"></i> 视频时长 (秒)</label>
+                        <input type="number" id="duration" min="5" max="60" value="15">
+                    </div>
+                </div>
+                
+                <div class="quality-presets">
+                    <div class="quality-btn active" data-quality="balanced">
+                        <i class="fas fa-balance-scale"></i> 平衡质量
+                    </div>
+                    <div class="quality-btn" data-quality="high">
+                        <i class="fas fa-star"></i> 高质量
+                    </div>
+                    <div class="quality-btn" data-quality="ultra">
+                        <i class="fas fa-gem"></i> 超高质量
+                    </div>
+                </div>
+            </div>
+            
+            <div class="preview-section">
+                <div class="card-title">
+                    <i class="fas fa-image"></i>
+                    <span>高清预览</span>
+                </div>
+                
+                <div class="preview-container">
+                    <div class="resolution-badge" id="resolution-badge">1080P</div>
+                    <div class="flip-indicator" id="flip-indicator">镜像翻转!</div>
+                    <canvas class="preview-canvas" id="preview-canvas"></canvas>
+                    <img id="preview-image" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIwIiBoZWlnaHQ9IjMyMCIgdmlld0JveD0iMCAwIDMyMCAzMjAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjMyMCIgaGVpZ2h0PSIzMjAiIGZpbGw9InJnYmEoMjAsIDI1LCA4MCwgMC4xNSkiLz48cGF0aCBkPSJNMTYwIDgwTDIyMCAxNjBMMTYwIDI0MEwxMDAgMTYwTDE2MCA4MFoiIGZpbGw9InJnYmEoODYsIDEwOSwgMjI5LCAwLjIpIiBzdHJva2U9IiM1NDZkZTUiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjUwJSIgeT0iNDUlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJyZ2JhKDI1NSwgMjU1LCAyNTUsIDAuOCkiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyNHB4IiBmb250LXdlaWdodD0iNjAwIj5VcGxvYWQgSGlnaC1SZXMgSW1hZ2U8L3RleHQ+PHRleHQgeD0iNTAlIiB5PSI1NSUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9InJnYmEoMjU1LCAyNTUsIDI1NSwgMC42KSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE2cHgiPmZvciBiZXN0IHZpZGVvIHF1YWxpdHk8L3RleHQ+PC9zdmc+" alt="高清图片预览">
+                </div>
+            </div>
+            
+            <div class="controls">
+                <button id="preview-btn" class="preview-btn" disabled>
+                    <i class="fas fa-play-circle"></i>
+                    <span>预览效果</span>
+                </button>
+                <button id="generate-btn" class="generate-btn" disabled>
+                    <i class="fas fa-video"></i>
+                    <span>生成高清视频</span>
+                </button>
+                <button id="stop-btn" class="stop-btn" disabled>
+                    <i class="fas fa-stop-circle"></i>
+                    <span>停止</span>
+                </button>
+            </div>
+            
+            <div class="progress-container" id="progress-container">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+                <div class="progress-text" id="progress-text">初始化视频编码器...</div>
+            </div>
+            
+            <div class="status-panel" id="status">
+                请上传MIDI文件和高清图片以开始生成高质量视频
+            </div>
+            
+            <div class="video-output" id="video-output">
+                <div class="card-title">
+                    <i class="fas fa-film"></i>
+                    <span>生成的高清视频</span>
+                </div>
+                <div class="video-container">
+                    <video id="output-video" controls playsinline></video>
+                </div>
+                <button id="download-btn" class="download-btn">
+                    <i class="fas fa-download"></i>
+                    <span>下载高清视频 (MP4)</span>
+                </button>
+            </div>
+        </main>
+        
+        <div class="instructions">
+            <h3><i class="fas fa-info-circle"></i> 使用说明</h3>
+            <ol>
+                <li><strong>上传高分辨率图片</strong>：建议使用1920×1080或更高分辨率的图片，以获得最佳视频质量</li>
+                <li><strong>选择合适的音轨</strong>：MIDI文件中通常包含多个音轨，选择音符较多的音轨效果更好</li>
+                <li><strong>设置视频参数</strong>：选择分辨率、帧率和时长</li>
+                <li><strong>预览效果</strong>：点击预览按钮查看图片如何根据MIDI音符进行翻转</li>
+                <li><strong>生成视频</strong>：点击生成按钮创建高清视频</li>
+                <li><strong>下载视频</strong>：生成完成后可以下载MP4格式的高清视频文件</li>
+            </ol>
+        </div>
+        
+        <footer>
+            <p>© 2023 高清MIDI图片镜像翻转视频生成器 | 使用Canvas和MediaRecorder API实现</p>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tonejs/midi@2.0.28/build/Midi.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
