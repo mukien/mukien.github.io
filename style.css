@@ -1,0 +1,980 @@
+/* style.css - Android原生UI风格 */
+:root {
+    /* Android Material Design 颜色系统 */
+    --android-primary: #6750A4;
+    --android-primary-container: #EADDFF;
+    --android-secondary: #625B71;
+    --android-secondary-container: #E8DEF8;
+    --android-surface: #FFFBFE;
+    --android-surface-variant: #E7E0EC;
+    --android-background: #FFFBFE;
+    --android-error: #B3261E;
+    --android-error-container: #F9DEDC;
+    
+    /* 文本颜色 */
+    --android-on-primary: #FFFFFF;
+    --android-on-secondary: #1C1B1F;
+    --android-on-surface: #1C1B1F;
+    --android-on-surface-variant: #49454F;
+    --android-on-error: #FFFFFF;
+    
+    /* 状态颜色 */
+    --android-hover: rgba(28, 27, 31, 0.08);
+    --android-focus: rgba(28, 27, 31, 0.12);
+    --android-pressed: rgba(28, 27, 31, 0.12);
+    
+    /* 阴影 */
+    --android-elevation-1: 0 1px 3px 1px rgba(0, 0, 0, 0.15), 0 1px 2px 0 rgba(0, 0, 0, 0.30);
+    --android-elevation-2: 0 2px 6px 2px rgba(0, 0, 0, 0.15), 0 1px 2px 0 rgba(0, 0, 0, 0.30);
+    --android-elevation-3: 0 4px 8px 3px rgba(0, 0, 0, 0.15), 0 1px 3px 0 rgba(0, 0, 0, 0.30);
+    
+    /* 圆角 */
+    --android-corner-extra-small: 4px;
+    --android-corner-small: 8px;
+    --android-corner-medium: 12px;
+    --android-corner-large: 16px;
+    --android-corner-extra-large: 28px;
+    --android-corner-full: 9999px;
+    
+    /* 间距 */
+    --android-spacing-xs: 4px;
+    --android-spacing-sm: 8px;
+    --android-spacing-md: 16px;
+    --android-spacing-lg: 24px;
+    --android-spacing-xl: 32px;
+    --android-spacing-xxl: 48px;
+    
+    /* 字体 */
+    --android-font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --android-font-size-title-large: 22px;
+    --android-font-size-title-medium: 16px;
+    --android-font-size-title-small: 14px;
+    --android-font-size-body-large: 16px;
+    --android-font-size-body-medium: 14px;
+    --android-font-size-body-small: 12px;
+    --android-font-size-label-large: 14px;
+    --android-font-size-label-medium: 12px;
+    --android-font-size-label-small: 11px;
+    
+    /* 字重 */
+    --android-font-weight-regular: 400;
+    --android-font-weight-medium: 500;
+    --android-font-weight-bold: 700;
+    
+    /* 动画 */
+    --android-transition: 200ms cubic-bezier(0.2, 0, 0, 1);
+    --android-transition-fast: 100ms cubic-bezier(0.2, 0, 0, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--android-font-family);
+    background-color: var(--android-background);
+    color: var(--android-on-surface);
+    min-height: 100vh;
+    padding: var(--android-spacing-md);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+    width: 100%;
+    max-width: 1000px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--android-spacing-lg);
+}
+
+/* Header - Android风格顶部栏 */
+header {
+    width: 100%;
+    background-color: var(--android-surface);
+    border-radius: var(--android-corner-medium);
+    padding: var(--android-spacing-lg);
+    box-shadow: var(--android-elevation-1);
+    margin-bottom: var(--android-spacing-sm);
+}
+
+.app-bar {
+    display: flex;
+    flex-direction: column;
+    gap: var(--android-spacing-xs);
+}
+
+h1 {
+    font-size: var(--android-font-size-title-large);
+    font-weight: var(--android-font-weight-medium);
+    color: var(--android-on-surface);
+    margin: 0;
+    line-height: 1.2;
+}
+
+.subtitle {
+    font-size: var(--android-font-size-body-medium);
+    color: var(--android-on-surface-variant);
+    font-weight: var(--android-font-weight-regular);
+    line-height: 1.4;
+}
+
+/* Card - Android风格卡片 */
+.card {
+    background-color: var(--android-surface);
+    border-radius: var(--android-corner-large);
+    padding: var(--android-spacing-lg);
+    box-shadow: var(--android-elevation-1);
+    border: 1px solid var(--android-surface-variant);
+}
+
+.card-title {
+    display: flex;
+    align-items: center;
+    gap: var(--android-spacing-sm);
+    margin-bottom: var(--android-spacing-lg);
+    font-size: var(--android-font-size-title-medium);
+    font-weight: var(--android-font-weight-medium);
+    color: var(--android-on-surface);
+    line-height: 1.4;
+}
+
+.card-title i {
+    font-size: 20px;
+    color: var(--android-primary);
+}
+
+/* Upload Area - Android风格上传区域 */
+.upload-area {
+    border: 2px dashed var(--android-surface-variant);
+    border-radius: var(--android-corner-medium);
+    padding: var(--android-spacing-xl);
+    text-align: center;
+    cursor: pointer;
+    transition: all var(--android-transition);
+    margin-bottom: var(--android-spacing-lg);
+    background-color: transparent;
+    position: relative;
+}
+
+.upload-area:hover {
+    background-color: var(--android-hover);
+    border-color: var(--android-primary);
+}
+
+.upload-area.highlight {
+    background-color: var(--android-primary-container);
+    border-color: var(--android-primary);
+    border-style: solid;
+}
+
+.upload-icon {
+    font-size: 48px;
+    color: var(--android-primary);
+    margin-bottom: var(--android-spacing-md);
+    opacity: 0.87;
+}
+
+.upload-text {
+    font-size: var(--android-font-size-title-medium);
+    font-weight: var(--android-font-weight-medium);
+    color: var(--android-on-surface);
+    margin-bottom: var(--android-spacing-xs);
+    opacity: 0.87;
+}
+
+.upload-subtext {
+    font-size: var(--android-font-size-body-medium);
+    color: var(--android-on-surface-variant);
+    opacity: 0.6;
+}
+
+.upload-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* File Info - Android风格文件信息显示 */
+.file-info {
+    background-color: var(--android-surface-variant);
+    border-radius: var(--android-corner-small);
+    padding: var(--android-spacing-md);
+    margin-top: var(--android-spacing-sm);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid transparent;
+    transition: all var(--android-transition);
+}
+
+.file-info:hover {
+    background-color: var(--android-hover);
+}
+
+.file-info.hidden {
+    display: none;
+}
+
+.file-info-content {
+    flex: 1;
+    overflow: hidden;
+}
+
+.file-name {
+    font-weight: var(--android-font-weight-medium);
+    color: var(--android-on-surface);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: var(--android-font-size-body-medium);
+    opacity: 0.87;
+}
+
+.file-size {
+    color: var(--android-on-surface-variant);
+    font-size: var(--android-font-size-body-small);
+    opacity: 0.6;
+    margin-top: 2px;
+}
+
+/* Buttons - Android风格按钮 */
+.remove-btn {
+    background-color: var(--android-error-container);
+    color: var(--android-error);
+    border: none;
+    border-radius: var(--android-corner-extra-small);
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--android-transition);
+    margin-left: var(--android-spacing-sm);
+    flex-shrink: 0;
+}
+
+.remove-btn:hover {
+    background-color: var(--android-hover);
+}
+
+.remove-btn:active {
+    background-color: var(--android-pressed);
+    transform: scale(0.95);
+}
+
+/* Settings Panel - Android风格设置面板 */
+.settings-panel {
+    background-color: var(--android-surface-variant);
+    border-radius: var(--android-corner-medium);
+    padding: var(--android-spacing-lg);
+    margin-top: var(--android-spacing-lg);
+}
+
+.settings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--android-spacing-md);
+    margin-top: var(--android-spacing-sm);
+}
+
+.setting-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.setting-group label {
+    display: flex;
+    align-items: center;
+    gap: var(--android-spacing-xs);
+    margin-bottom: var(--android-spacing-xs);
+    color: var(--android-on-surface-variant);
+    font-weight: var(--android-font-weight-medium);
+    font-size: var(--android-font-size-body-medium);
+    opacity: 0.87;
+}
+
+.setting-group label i {
+    font-size: 16px;
+    opacity: 0.6;
+}
+
+/* Select and Input - Android风格表单控件 */
+select, input {
+    width: 100%;
+    padding: 12px var(--android-spacing-sm);
+    background-color: var(--android-surface);
+    border: 1px solid var(--android-on-surface-variant);
+    border-radius: var(--android-corner-small);
+    color: var(--android-on-surface);
+    font-size: var(--android-font-size-body-medium);
+    font-family: var(--android-font-family);
+    outline: none;
+    transition: all var(--android-transition);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%2349454F' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 12px;
+    padding-right: 36px;
+}
+
+input:focus, select:focus {
+    border-color: var(--android-primary);
+    box-shadow: 0 0 0 1px var(--android-primary);
+}
+
+input:disabled, select:disabled {
+    opacity: 0.38;
+    cursor: not-allowed;
+    background-color: var(--android-hover);
+    border-color: var(--android-surface-variant);
+}
+
+/* Quality Presets - Android风格预设选项 */
+.quality-presets {
+    display: flex;
+    gap: var(--android-spacing-sm);
+    margin-top: var(--android-spacing-md);
+    flex-wrap: wrap;
+}
+
+.quality-btn {
+    padding: 8px 16px;
+    background-color: var(--android-surface);
+    border: 1px solid var(--android-surface-variant);
+    border-radius: var(--android-corner-full);
+    color: var(--android-on-surface);
+    cursor: pointer;
+    transition: all var(--android-transition);
+    font-weight: var(--android-font-weight-medium);
+    font-size: var(--android-font-size-label-medium);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    opacity: 0.87;
+}
+
+.quality-btn:hover {
+    background-color: var(--android-hover);
+}
+
+.quality-btn.active {
+    background-color: var(--android-primary-container);
+    color: var(--android-primary);
+    border-color: var(--android-primary-container);
+    opacity: 1;
+}
+
+/* Preview Section - Android风格预览区域 */
+.preview-section {
+    margin-top: var(--android-spacing-xl);
+}
+
+.preview-container {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+    border-radius: var(--android-corner-medium);
+    background-color: var(--android-surface-variant);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: var(--android-spacing-sm);
+    border: 1px solid var(--android-surface-variant);
+}
+
+#preview-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: center center;
+}
+
+.preview-canvas {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Badges - Android风格徽章 */
+.resolution-badge {
+    position: absolute;
+    bottom: var(--android-spacing-sm);
+    right: var(--android-spacing-sm);
+    background-color: var(--android-surface);
+    color: var(--android-on-surface);
+    padding: 4px 8px;
+    border-radius: var(--android-corner-full);
+    font-weight: var(--android-font-weight-medium);
+    font-size: var(--android-font-size-label-small);
+    display: none;
+    z-index: 10;
+    box-shadow: var(--android-elevation-1);
+    opacity: 0.87;
+}
+
+.flip-indicator {
+    position: absolute;
+    top: var(--android-spacing-sm);
+    right: var(--android-spacing-sm);
+    background-color: var(--android-primary);
+    color: var(--android-on-primary);
+    padding: 8px 12px;
+    border-radius: var(--android-corner-full);
+    font-weight: var(--android-font-weight-medium);
+    font-size: var(--android-font-size-label-medium);
+    display: none;
+    z-index: 10;
+    animation: flipIndicator 1s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: var(--android-elevation-2);
+}
+
+/* Controls - Android风格控制按钮 */
+.controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--android-spacing-sm);
+    margin-top: var(--android-spacing-xl);
+    justify-content: center;
+}
+
+button {
+    flex: 1;
+    min-width: 160px;
+    padding: 16px 24px;
+    border: none;
+    border-radius: var(--android-corner-large);
+    font-size: var(--android-font-size-body-medium);
+    font-weight: var(--android-font-weight-medium);
+    cursor: pointer;
+    transition: all var(--android-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--android-spacing-xs);
+    letter-spacing: 0.25px;
+    text-transform: uppercase;
+    position: relative;
+    overflow: hidden;
+}
+
+button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1, 1) translate(-50%);
+    transform-origin: 50% 50%;
+}
+
+button:focus:not(:active)::after {
+    animation: ripple 0.6s ease-out;
+}
+
+.preview-btn {
+    background-color: var(--android-primary);
+    color: var(--android-on-primary);
+    box-shadow: var(--android-elevation-1);
+}
+
+.preview-btn:hover:not(:disabled) {
+    background-color: color-mix(in srgb, var(--android-primary) 90%, white);
+    box-shadow: var(--android-elevation-2);
+}
+
+.preview-btn:active:not(:disabled) {
+    background-color: color-mix(in srgb, var(--android-primary) 80%, black);
+}
+
+.generate-btn {
+    background-color: var(--android-secondary);
+    color: var(--android-on-secondary);
+    box-shadow: var(--android-elevation-1);
+}
+
+.generate-btn:hover:not(:disabled) {
+    background-color: color-mix(in srgb, var(--android-secondary) 90%, white);
+    box-shadow: var(--android-elevation-2);
+}
+
+.generate-btn:active:not(:disabled) {
+    background-color: color-mix(in srgb, var(--android-secondary) 80%, black);
+}
+
+.stop-btn {
+    background-color: var(--android-error-container);
+    color: var(--android-error);
+    box-shadow: var(--android-elevation-1);
+}
+
+.stop-btn:hover:not(:disabled) {
+    background-color: color-mix(in srgb, var(--android-error-container) 90%, white);
+    box-shadow: var(--android-elevation-2);
+}
+
+.stop-btn:active:not(:disabled) {
+    background-color: color-mix(in srgb, var(--android-error-container) 80%, black);
+}
+
+button:disabled {
+    opacity: 0.38;
+    cursor: not-allowed;
+    background-color: var(--android-surface-variant);
+    color: var(--android-on-surface);
+    box-shadow: none !important;
+}
+
+/* Status Panel - Android风格状态面板 */
+.status-panel {
+    margin-top: var(--android-spacing-xl);
+    padding: var(--android-spacing-lg);
+    border-radius: var(--android-corner-medium);
+    background-color: var(--android-surface-variant);
+    text-align: center;
+    font-size: var(--android-font-size-body-medium);
+    width: 100%;
+    border: 1px solid transparent;
+    color: var(--android-on-surface-variant);
+    opacity: 0.87;
+}
+
+/* Progress - Android风格进度条 */
+.progress-container {
+    width: 100%;
+    margin-top: var(--android-spacing-lg);
+    display: none;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 4px;
+    background-color: var(--android-surface-variant);
+    border-radius: var(--android-corner-full);
+    overflow: hidden;
+    margin-bottom: var(--android-spacing-sm);
+}
+
+.progress-fill {
+    height: 100%;
+    background-color: var(--android-primary);
+    width: 0%;
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: var(--android-corner-full);
+    position: relative;
+}
+
+.progress-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.3), 
+        transparent);
+    animation: shimmer 2s infinite;
+}
+
+.progress-text {
+    text-align: center;
+    color: var(--android-on-surface);
+    font-size: var(--android-font-size-body-small);
+    font-weight: var(--android-font-weight-medium);
+    opacity: 0.87;
+}
+
+/* Video Output - Android风格视频输出 */
+.video-output {
+    margin-top: var(--android-spacing-xl);
+    display: none;
+    width: 100%;
+    animation: fadeIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.video-container {
+    width: 100%;
+    border-radius: var(--android-corner-medium);
+    overflow: hidden;
+    background-color: var(--android-surface-variant);
+    margin-bottom: var(--android-spacing-md);
+    border: 1px solid var(--android-surface-variant);
+    box-shadow: var(--android-elevation-1);
+}
+
+#output-video {
+    width: 100%;
+    display: block;
+    border-radius: var(--android-corner-small);
+}
+
+/* Download Button - Android风格下载按钮 */
+.download-btn {
+    background-color: var(--android-primary);
+    color: var(--android-on-primary);
+    width: 100%;
+    padding: 16px;
+    font-size: var(--android-font-size-body-medium);
+    box-shadow: var(--android-elevation-1);
+    text-transform: uppercase;
+}
+
+.download-btn:hover {
+    background-color: color-mix(in srgb, var(--android-primary) 90%, white);
+    box-shadow: var(--android-elevation-2);
+}
+
+.download-btn:active {
+    background-color: color-mix(in srgb, var(--android-primary) 80%, black);
+}
+
+/* Instructions - Android风格说明区域 */
+.instructions {
+    margin-top: var(--android-spacing-xxl);
+    padding: var(--android-spacing-lg);
+    background-color: var(--android-surface-variant);
+    border-radius: var(--android-corner-medium);
+    border-left: 4px solid var(--android-primary);
+}
+
+.instructions h3 {
+    margin-bottom: var(--android-spacing-md);
+    color: var(--android-on-surface);
+    font-size: var(--android-font-size-title-medium);
+    font-weight: var(--android-font-weight-medium);
+    display: flex;
+    align-items: center;
+    gap: var(--android-spacing-xs);
+    opacity: 0.87;
+}
+
+.instructions h3 i {
+    color: var(--android-primary);
+}
+
+.instructions ol {
+    padding-left: var(--android-spacing-lg);
+}
+
+.instructions li {
+    margin-bottom: var(--android-spacing-sm);
+    line-height: 1.6;
+    font-size: var(--android-font-size-body-medium);
+    color: var(--android-on-surface);
+    opacity: 0.87;
+}
+
+.instructions strong {
+    color: var(--android-on-surface);
+    font-weight: var(--android-font-weight-medium);
+    opacity: 1;
+}
+
+/* Footer - Android风格底部信息 */
+footer {
+    margin-top: var(--android-spacing-xl);
+    text-align: center;
+    color: var(--android-on-surface-variant);
+    font-size: var(--android-font-size-body-small);
+    width: 100%;
+    padding-bottom: var(--android-spacing-md);
+    opacity: 0.6;
+}
+
+/* Material Design的触摸反馈效果 */
+button, .upload-area, .quality-btn, .remove-btn {
+    position: relative;
+    overflow: hidden;
+}
+
+button::before, .upload-area::before, .quality-btn::before, .remove-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(28, 27, 31, 0.1);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1, 1) translate(-50%);
+    transform-origin: 50% 50%;
+}
+
+button:active:not(:disabled)::before,
+.upload-area:active::before,
+.quality-btn:active::before,
+.remove-btn:active::before {
+    animation: ripple 0.6s ease-out;
+}
+
+/* Android风格动画 */
+@keyframes ripple {
+    0% {
+        transform: scale(0, 0);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(20, 20);
+        opacity: 0;
+    }
+}
+
+@keyframes flipIndicator {
+    0% { 
+        opacity: 0; 
+        transform: translateY(-20px) scale(0.8); 
+    }
+    20% { 
+        opacity: 1; 
+        transform: translateY(0) scale(1.1); 
+    }
+    80% { 
+        opacity: 1; 
+        transform: translateY(0) scale(1.1); 
+    }
+    100% { 
+        opacity: 0; 
+        transform: translateY(-20px) scale(0.8); 
+    }
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+@keyframes fadeIn {
+    from { 
+        opacity: 0; 
+        transform: translateY(20px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+}
+
+/* 响应式设计 - 移动端适配 */
+@media (max-width: 768px) {
+    .container {
+        padding: var(--android-spacing-sm);
+        gap: var(--android-spacing-md);
+    }
+    
+    h1 {
+        font-size: var(--android-font-size-title-medium);
+    }
+    
+    .card {
+        padding: var(--android-spacing-md);
+        border-radius: var(--android-corner-medium);
+    }
+    
+    .preview-container {
+        height: 350px;
+    }
+    
+    .settings-grid {
+        grid-template-columns: 1fr;
+        gap: var(--android-spacing-sm);
+    }
+    
+    button {
+        min-width: 100%;
+        padding: 14px 20px;
+    }
+    
+    .upload-area {
+        padding: var(--android-spacing-lg) var(--android-spacing-md);
+    }
+    
+    .upload-icon {
+        font-size: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: var(--android-spacing-sm);
+    }
+    
+    .preview-container {
+        height: 300px;
+    }
+    
+    .upload-area {
+        padding: var(--android-spacing-md) var(--android-spacing-sm);
+    }
+    
+    .upload-icon {
+        font-size: 36px;
+        margin-bottom: var(--android-spacing-sm);
+    }
+    
+    .upload-text {
+        font-size: var(--android-font-size-body-large);
+    }
+    
+    .upload-subtext {
+        font-size: var(--android-font-size-body-small);
+    }
+    
+    .card-title {
+        font-size: var(--android-font-size-body-large);
+        margin-bottom: var(--android-spacing-md);
+    }
+    
+    .instructions li {
+        font-size: var(--android-font-size-body-small);
+    }
+}
+
+/* 深色模式支持 */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --android-primary: #D0BCFF;
+        --android-primary-container: #4F378B;
+        --android-secondary: #CCC2DC;
+        --android-secondary-container: #4A4458;
+        --android-surface: #1C1B1F;
+        --android-surface-variant: #49454F;
+        --android-background: #1C1B1F;
+        --android-error: #F2B8B5;
+        --android-error-container: #8C1D18;
+        
+        --android-on-primary: #381E72;
+        --android-on-secondary: #332D41;
+        --android-on-surface: #E6E1E5;
+        --android-on-surface-variant: #CAC4D0;
+        --android-on-error: #601410;
+        
+        --android-hover: rgba(230, 225, 229, 0.08);
+        --android-focus: rgba(230, 225, 229, 0.12);
+        --android-pressed: rgba(230, 225, 229, 0.12);
+    }
+    
+    select {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23CAC4D0' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+    }
+}
+
+/* 滚动条样式 - Android风格 */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: var(--android-surface-variant);
+    border-radius: var(--android-corner-full);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--android-on-surface-variant);
+    border-radius: var(--android-corner-full);
+    opacity: 0.6;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--android-primary);
+    opacity: 1;
+}
+
+/* 焦点轮廓样式 */
+:focus-visible {
+    outline: 2px solid var(--android-primary);
+    outline-offset: 2px;
+}
+
+/* 禁用文本选择 */
+button, .upload-area, .quality-btn {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+/* 加载状态 */
+.loading {
+    position: relative;
+    color: transparent !important;
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--android-surface-variant);
+    border-top-color: var(--android-primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* 分割线 */
+.divider {
+    height: 1px;
+    background-color: var(--android-surface-variant);
+    margin: var(--android-spacing-lg) 0;
+    width: 100%;
+}
+
+/* 工具提示 */
+[data-tooltip] {
+    position: relative;
+}
+
+[data-tooltip]::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 6px 8px;
+    background-color: var(--android-surface-variant);
+    color: var(--android-on-surface);
+    font-size: var(--android-font-size-label-small);
+    border-radius: var(--android-corner-extra-small);
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    z-index: 100;
+}
+
+[data-tooltip]:hover::before {
+    opacity: 0.9;
+}
